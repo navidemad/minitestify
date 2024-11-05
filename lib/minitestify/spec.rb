@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "minitestify"
 
 module Minitestify
@@ -10,7 +8,7 @@ module Minitestify
 
     def to_test_filepath
       @file.gsub "spec", "test"
-      # TODO be smarter here and dissect the file path
+      # TODO: be smarter here and dissect the file path
       # replacing only the spec dir (if present)
       # and the _spec.rb suffix
     end
@@ -19,7 +17,7 @@ module Minitestify
       source = SyntaxTree.read(@file)
       program = SyntaxTree.parse(source)
 
-      visitor = SyntaxTree::Visitor::MutationVisitor.new
+      visitor = SyntaxTree::MutationVisitor.new
       inflector = Dry::Inflector.new
 
       # describe -> class
